@@ -1,0 +1,5 @@
+.venv/*
+.vscode/*
+*.pyc
+.ruff_cache/*
+__pycache__/*
