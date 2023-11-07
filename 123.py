@@ -1,7 +1,7 @@
-from docx import Document
-import re
+# from docx import Document
+# import re
 
 
 
-document = Document("docs\\zameni.docx")
+# document = Document("docs\\zameni.docx")
 

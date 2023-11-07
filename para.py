@@ -2,8 +2,9 @@ import pandas as pd
 import json
 from datetime import date
 from datetime import datetime
-
-
+from openpyxl import load_workbook
+import os
+from database import DataBase
 def para_prepod(prepod):
 
     try:
@@ -82,3 +83,32 @@ def raspisanie_students(group):
         return raspisanie
     except Exception as e:
         return f"Ошибки \n {e} \n А теперь пиздуй чинить"
+    
+
+def get_shelude(weekday, user_id):
+    group = DataBase.get_group(user_id)
+
+    shelude = ''
+    workbook = load_workbook(os.getcwd() + '\\docs\\raspisanie.xlsx')
+    first_sheet = workbook.get_sheet_names()[0]
+    worksheet = workbook.get_sheet_by_name(first_sheet)
+    
+    for column in range(3, 23):
+        if str(worksheet.cell(10,column).value) in group:
+            user_column = column
+
+    weekdays = ['понедельник', 'вторник', 'среда', "четверг", "пятница", "суббота"]
+
+    for i in range(14, 66, 9):
+        
+        weekday_shelude = weekdays.index((worksheet.cell(i,1).value.strip(' ')).lower()) + 1
+
+        if weekday == weekday_shelude:
+            shelude = f'Расписание на {(worksheet.cell(i,1).value).lower()} для группы {group}'
+            for id, x in enumerate(range(i, i + 8)):
+                if (id+1) % 2 == 1:
+                    shelude += f'\n{round((id)/2)+1}. {worksheet.cell(x,user_column).value}'
+                else:
+                    shelude += f'\n   {worksheet.cell(x,user_column).value}'
+    shelude = shelude.replace("None", '---------------')
+    return shelude

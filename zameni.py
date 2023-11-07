@@ -44,7 +44,6 @@ def zameni_group(group):
 
 def zameni_prepod(group):
 
-
     document = Document("docs\\zameni.docx")
     aboba = []
 
@@ -54,7 +53,7 @@ def zameni_prepod(group):
 
         if "на " in paragraph.text:
             aboba.append(paragraph.text)
-    # Пе
+    
     for table in enumerate(document.tables, start=0):
         for x in range(0, 3):
             row = table[1].column_cells(x)

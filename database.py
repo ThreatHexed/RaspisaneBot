@@ -1,20 +1,5 @@
 import sqlite3
 
-# Создаем подключение к базе данных (файл my_database.db будет создан)
-# connection = sqlite3.connect('database.db')
-# cursor = connection.cursor()
-# cursor.execute('''
-# CREATE TABLE IF NOT EXISTS Users (
-# id INTEGER PRIMARY KEY,
-# tele_id INTEGER NOT NULL,
-# class TEXT
-# )
-# ''')
-
-# Сохраняем изменения и закрываем соединение
-# connection.commit()
-# connection.close()
-
 class DataBase:
     def add_user(tele_user_id):
         connection = sqlite3.connect('database.db')
@@ -23,7 +8,6 @@ class DataBase:
         connection.commit()
         connection.close()
 
-    
     def change_group(tele_user_id, class_name):
         connection = sqlite3.connect('database.db')
         cursor = connection.cursor()
@@ -40,3 +24,4 @@ class DataBase:
         connection.commit()
         connection.close()
         return group_name
+    
