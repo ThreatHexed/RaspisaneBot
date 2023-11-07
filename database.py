@@ -24,4 +24,3 @@ class DataBase:
         connection.commit()
         connection.close()
         return group_name
-    
