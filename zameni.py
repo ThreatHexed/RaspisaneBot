@@ -1,12 +1,13 @@
 import re
 from docx import Document
 import parcers
-
+from database import DataBase
 # parcers.getFiles()
 
 
-def zameni_group(group):
+def zameni_group(user_id):
 
+    group = DataBase.get_group(user_id)
     document = Document("docs\\zameni.docx")
     aboba = []
 
@@ -32,14 +33,14 @@ def zameni_group(group):
 
                                 for t in range(0, len(gpz2), 2):
                                     if gpz2[t] == group:
-                                        return(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}\n\nЗамены для группы {aboba[-1]}:\n{gpz2[t+1]}')
-                        return(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}')
+                                        return(str(f'Замены для группы {gpz[i]} {date}\n{str(gpz[i+1])}\n\nЗамены для группы {aboba[-1]}:\n{gpz2[t+1]}'))
+                        return(str(f'Замены для группы {gpz[i]} {date}\n{str(gpz[i+1])}'))
 
                     elif table[0] == 2 or table[0] == 3:
                         date = aboba[2]
-                        return(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}')
+                        return(str(f'Замены для группы {gpz[i]} {date}\n{str(gpz[i+1])}'))
 
-    return False
+    return "Замен нет"
 
 
 def zameni_prepod(group):

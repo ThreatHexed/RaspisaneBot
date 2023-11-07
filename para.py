@@ -85,10 +85,10 @@ def raspisanie_students(group):
         return f"Ошибки \n {e} \n А теперь пиздуй чинить"
     
 
-def get_shelude(weekday, user_id):
+def get_timetable(weekday, user_id):
     group = DataBase.get_group(user_id)
 
-    shelude = ''
+    timetable = ''
     workbook = load_workbook(os.getcwd() + '\\docs\\raspisanie.xlsx')
     first_sheet = workbook.get_sheet_names()[0]
     worksheet = workbook.get_sheet_by_name(first_sheet)
@@ -101,14 +101,15 @@ def get_shelude(weekday, user_id):
 
     for i in range(14, 66, 9):
         
-        weekday_shelude = weekdays.index((worksheet.cell(i,1).value.strip(' ')).lower()) + 1
+        weekday_timetable = weekdays.index((worksheet.cell(i,1).value.strip(' ')).lower()) + 1
 
-        if weekday == weekday_shelude:
-            shelude = f'Расписание на {(worksheet.cell(i,1).value).lower()} для группы {group}'
+        if weekday == weekday_timetable:
+            timetable = f'Расписание на {(worksheet.cell(i,1).value).lower()} для группы {group}'
             for id, x in enumerate(range(i, i + 8)):
                 if (id+1) % 2 == 1:
-                    shelude += f'\n{round((id)/2)+1}. {worksheet.cell(x,user_column).value}'
+                    timetable += f'\n{round((id)/2)+1}. {worksheet.cell(x,user_column).value}'
                 else:
-                    shelude += f'\n   {worksheet.cell(x,user_column).value}'
-    shelude = shelude.replace("None", '---------------')
-    return shelude
+                    timetable += f'\n   {worksheet.cell(x,user_column).value}'
+    timetable = timetable.replace("None", '---------------')
+    print(type(timetable))
+    return timetable

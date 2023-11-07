@@ -8,6 +8,7 @@ from kb import teachers
 from datetime import datetime
 import kb
 import text
+import zameni
 from database import DataBase
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
@@ -32,8 +33,8 @@ async def start_handler(msg: Message):
 
 @router.callback_query(F.data == 'nextday')
 @router.callback_query(F.data == 'prevday')
-@router.callback_query(F.data == 'get_schedule')
-async def change_shelude_day(callback: types.CallbackQuery, state: FSMContext):
+@router.callback_query(F.data == 'get_timetable')
+async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext):
     await state.set_state(UserState.weekday)
     tele_user_id = callback.from_user.id
     if callback.data == 'nextday':
@@ -46,7 +47,7 @@ async def change_shelude_day(callback: types.CallbackQuery, state: FSMContext):
         await state.update_data(weekday = daynumber['weekday'] - 1)
         daynumber = await state.get_data()
 
-    elif callback.data == 'get_schedule':
+    elif callback.data == 'get_timetable':
         await state.update_data(weekday = datetime.isoweekday(datetime.now()))
         daynumber = await state.get_data()
 
@@ -56,12 +57,16 @@ async def change_shelude_day(callback: types.CallbackQuery, state: FSMContext):
         await state.set_state(UserState.weekday)
     
     if daynumber == 1:
-            await callback.message.edit_caption(caption = para.get_shelude(daynumber, tele_user_id), reply_markup=kb.shelude_monday)
+        await callback.message.edit_caption(caption = para.get_timetable(daynumber, tele_user_id), reply_markup=kb.timetable_monday)
     elif daynumber == 6:
-        await callback.message.edit_caption(caption = para.get_shelude(daynumber, tele_user_id), reply_markup=kb.shelude_saturday)
+        await callback.message.edit_caption(caption = para.get_timetable(daynumber, tele_user_id), reply_markup=kb.timetable_saturday)
     else:
-        await callback.message.edit_caption(caption = para.get_shelude(daynumber, tele_user_id), reply_markup=kb.shelude.as_markup())
+        await callback.message.edit_caption(caption = para.get_timetable(daynumber, tele_user_id), reply_markup=kb.timetable.as_markup())
 
+@router.callback_query(F.data == 'get_zameni')
+async def change_timetable_day(callback: types.CallbackQuery):
+    tele_user_id = callback.from_user.id
+    await callback.message.edit_caption(caption = zameni.zameni_group(tele_user_id), reply_markup=kb.back)
 
 @router.callback_query(F.data == 'home')
 async def home(callback: types.CallbackQuery, state: FSMContext):
@@ -72,8 +77,8 @@ async def home(callback: types.CallbackQuery, state: FSMContext):
 async def choose_group(callback: types.CallbackQuery):
     await callback.message.edit_caption(caption = text.choose_group.format(group = DataBase.get_group(callback.from_user.id)), reply_markup=kb.gbuilder.as_markup())
 
-@router.callback_query(F.data == 'get_shelude_teacher')
-async def get_teacher_shelude(callback: types.CallbackQuery):
+@router.callback_query(F.data == 'get_timetable_teacher')
+async def get_teacher_timetable(callback: types.CallbackQuery):
     await callback.message.edit_caption(caption=text.choose_teacher, reply_markup=kb.tbuilder.as_markup())
 
 @router.callback_query(F.data.in_(groups))
@@ -84,4 +89,4 @@ async def change_group(callback: types.CallbackQuery):
 
 @router.callback_query(F.data.in_(teachers))
 async def choose_teacher(callback: types.CallbackQuery):
-    await callback.message.edit_caption(caption = text.teacher_shelude.format(teacher = callback.data), reply_markup=kb.back)
+    await callback.message.edit_caption(caption = text.teacher_timetable.format(teacher = callback.data), reply_markup=kb.back)
