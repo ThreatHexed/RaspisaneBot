@@ -54,7 +54,7 @@ def get_timetable(weekday, user_id):
     group = DataBase.get_group(user_id)
 
     timetable = ''
-    workbook = load_workbook(os.getcwd() + '\\docs\\raspisanie.xlsx')
+    workbook = load_workbook(os.getcwd() + '/raspisanie.xlsx')
     first_sheet = workbook.get_sheet_names()[0]
     worksheet = workbook.get_sheet_by_name(first_sheet)
     

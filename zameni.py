@@ -1,14 +1,13 @@
 import re
 from docx import Document
-import parcers
 from database import DataBase
-# parcers.getFiles()
+
 
 
 def zameni_group(user_id):
 
     group = DataBase.get_group(user_id)
-    document = Document("docs\\zameni.docx")
+    document = Document("zameni.docx")
     aboba = []
 
     for paragraph in document.paragraphs:
@@ -45,7 +44,7 @@ def zameni_group(user_id):
 
 def zameni_prepod(group):
 
-    document = Document("docs\\zameni.docx")
+    document = Document("docs/zameni.docx")
     aboba = []
 
     # Поиск даты замен
