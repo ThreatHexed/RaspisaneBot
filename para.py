@@ -11,7 +11,7 @@ def para_prepod(prepod):
     try:
 
         weekday = ['0', "Понедельник", "Вторник", "Среда", "Четверг",
-                   "Пятница", "Суббота", "Понедельник", "Понедельник"]
+                    "Пятница", "Суббота", "Понедельник", "Понедельник"]
 
         if datetime.now().hour > 8:
             userdate = str(date.today().isoweekday()+1)
@@ -62,7 +62,7 @@ def get_timetable(weekday, user_id):
         if str(worksheet.cell(10,column).value) in group:
             user_column = column
 
-    weekdays = ['понедельник', 'вторник', 'среда', "четверг", "пятница", "суббота"]
+    weekdays = ['понедельник', 'вторник', 'среда', "четверг", "пятница", "суббота", "воскресенье"]
 
     for i in range(14, 66, 9):
         

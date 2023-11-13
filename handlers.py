@@ -37,6 +37,7 @@ async def start_handler(msg: Message):
 async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext):
     await state.set_state(UserState.weekday)
     tele_user_id = callback.from_user.id
+
     if callback.data == 'nextday':
         daynumber = await state.get_data()
         await state.update_data(weekday = daynumber['weekday'] + 1)
@@ -54,14 +55,19 @@ async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext)
     daynumber = int(daynumber['weekday'])
     
     if daynumber < 1 or daynumber > 6:
-        await state.set_state(UserState.weekday)
-    
-    if daynumber == 1:
-        await callback.message.edit_caption(caption = para.get_timetable(daynumber, tele_user_id), reply_markup=kb.timetable_monday)
+        await state.update_data(weekday = datetime.isoweekday(datetime.now()))
+
+    if daynumber in [1, 7]:
+        await callback.message.edit_caption(caption = para.get_timetable(1, tele_user_id), reply_markup=kb.timetable_monday)
+
     elif daynumber == 6:
         await callback.message.edit_caption(caption = para.get_timetable(daynumber, tele_user_id), reply_markup=kb.timetable_saturday)
+
     else:
         await callback.message.edit_caption(caption = para.get_timetable(daynumber, tele_user_id), reply_markup=kb.timetable.as_markup())
+
+
+
 
 @router.callback_query(F.data == 'get_zameni')
 async def change_timetable_day(callback: types.CallbackQuery):
