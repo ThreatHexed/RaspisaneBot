@@ -1,10 +1,10 @@
 import sqlite3
 
 class DataBase:
-    def add_user(tele_user_id):
+    def add_user(tele_user_id, tele_name):
         connection = sqlite3.connect('database.db')
         cursor = connection.cursor()
-        cursor.execute('INSERT INTO Users (tele_id, class) VALUES (?, ?)', (tele_user_id, None))
+        cursor.execute('INSERT INTO Users (tele_id, tele_name, class) VALUES (?, ?, ?)', (tele_user_id, tele_name, None))
         connection.commit()
         connection.close()
 

@@ -26,7 +26,7 @@ class UserState(StatesGroup):
 async def start_handler(msg: Message):
     photo = 'https://sun9-37.userapi.com/impg/QlvEe47gGtt_kEMUDxSxNB0r54xO1EfvwJtQPw/66kOHPB8HUc.jpg?size=1284x1160&quality=96&sign=c4cc6538e23aa90af846829d55e81247&type=album'
     p = DataBase
-    p.add_user(msg.from_user.id)
+    p.add_user(msg.from_user.id, msg.from_user.first_name)
     await msg.answer_photo(photo = photo, caption = str(text.greet.format(name=msg.from_user.full_name)), reply_markup=kb.menu)
 
 

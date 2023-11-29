@@ -3,3 +3,7 @@
 *.pyc
 .ruff_cache/*
 *__pycache__
+
+database.db
+sosi.py
+database.db
