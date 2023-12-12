@@ -44,7 +44,7 @@ def zameni_group(user_id):
 
 def zameni_prepod(group):
 
-    document = Document("docs/zameni.docx")
+    document = Document("zameni.docx")
     aboba = []
 
     # Поиск даты замен
@@ -57,10 +57,13 @@ def zameni_prepod(group):
     for table in enumerate(document.tables, start=0):
         for x in range(0, 3):
             row = table[1].column_cells(x)
-            
+          
             gpz = [re.compile(r'\s{2,}').sub(' ', i.text.strip()) for i in row]
+            print(gpz)
             for i in range(0, len(gpz), 2):
+                
                 if gpz[i] == group:
+                    
                     if table[0] == 0 or table[0] == 1:
                         
                         date = aboba[0]
@@ -71,11 +74,13 @@ def zameni_prepod(group):
 
                                 for t in range(0, len(gpz2), 2):
                                     if gpz2[t] == group:
-                                        return(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}\n\nЗамены для группы {aboba[-1]}:\n{gpz2[t+1]}')
-                        return(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}')
+                                        print(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}\n\nЗамены для группы {aboba[-1]}:\n{gpz2[t+1]}')
+                        print(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}')
 
                     elif table[0] == 2 or table[0] == 3:
                         date = aboba[2]
-                        return(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}')
+                        print(f'Замены для группы {gpz[i]} {date}❗️\n{str(gpz[i+1])}')
 
     return False
+
+zameni_prepod("Грезина")
