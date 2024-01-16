@@ -4,7 +4,7 @@ class DataBase:
     def add_user(tele_user_id):
         connection = sqlite3.connect('database.db')
         cursor = connection.cursor()
-        cursor.execute('INSERT INTO Users (tele_id, class) VALUES (?, ?, ?)', (tele_user_id, None))
+        cursor.execute('INSERT INTO Users (tele_id, class) VALUES (?, ?)', (tele_user_id, None))
         connection.commit()
         connection.close()
 
