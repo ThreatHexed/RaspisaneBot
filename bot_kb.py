@@ -4,7 +4,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 menu = [
     [InlineKeyboardButton(text="Расписание", callback_data='get_timetable')],
     [InlineKeyboardButton(text="Замены", callback_data='get_zameni')],
-    [InlineKeyboardButton(text="Препод", callback_data="get_timetable_teacher")],
+    # [InlineKeyboardButton(text="Препод", callback_data="get_timetable_teacher")],
     [InlineKeyboardButton(text="Указать группу", callback_data='choose_group')]
 ]
 menu = InlineKeyboardMarkup(inline_keyboard=menu)
@@ -45,11 +45,11 @@ for i in groups:
 gbuilder.adjust(4,4,4,5,1)
 
 
-teachers = ["Колесников", 'Я передумал🤨']
-tbuilder = InlineKeyboardBuilder()
-for i in teachers:
-    if "Я передумал" in i:
-        tbuilder.button(text = i, callback_data = 'home')
-    else:
-        tbuilder.button(text = i, callback_data = i)
-tbuilder.adjust(1, 1)
+# teachers = ["Колесников", 'Я передумал🤨']
+# tbuilder = InlineKeyboardBuilder()
+# for i in teachers:
+#     if "Я передумал" in i:
+#         tbuilder.button(text = i, callback_data = 'home')
+#     else:
+#         tbuilder.button(text = i, callback_data = i)
+# tbuilder.adjust(1, 1)
