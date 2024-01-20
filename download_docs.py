@@ -32,7 +32,6 @@ class Docs(Shelude, Replacement):
         
         doc = aw.Document(self.path + r'\documents\zameni.doc')
         doc.save(self.path + r'\documents\zameni.docx')
-
         print('[Status] DOC file converted to DOCX')
 
         self.update_hash_xls()
@@ -78,17 +77,29 @@ class Docs(Shelude, Replacement):
         with open(self.path + r'\documents\raspisanie.xls', 'wb') as file:
             file.write(response.content)
         print('[Status] new XLS file dowloaded')
+        x2x = XLS2XLSX(self.path + r'\documents\raspisanie.xls')
+        x2x.to_xlsx(self.path + r'\documents\raspisanie.xlsx')
+        print('[Status] XLS file converted to XLSX')
+        
         self.update_hash_xls()
     
     def download_doc(self, response):
         with open(self.path + r'\documents\zameni.doc', 'wb') as file:
             file.write(response.content)
         print('[Status] new DOC file dowloaded')
+        doc = aw.Document(self.path + r'\documents\zameni.doc')
+        doc.save(self.path + r'\documents\zameni.docx')
+        print('[Status] DOC file converted to DOCX')
+
         self.update_hash_doc()
 
 
 p = Docs()
 while True:
-        p.check_hash_xls()
-        p.check_hash_doc()
-        time.sleep(900)
+        a = int(input())
+        if a == 1:
+            p.check_hash_xls()
+            p.check_hash_doc()
+        if a == 2:
+            p.update_hash_doc()
+            p.update_hash_xls()
