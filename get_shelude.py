@@ -4,10 +4,10 @@ from database import DataBase
 
 class Shelude:
     def __init__(self) -> None:
-        self.worksheet = load_workbook(os.getcwd() + r'\documents\raspisanie.xlsx')['Лист1']
+        self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
 
     def update_shelude(self):
-        self.worksheet = load_workbook(os.getcwd() + r'\documents\raspisanie.xlsx')['Лист1']
+        self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
 
     def get_timetable(self, weekday, user_id):
         group = DataBase().get_group(user_id)

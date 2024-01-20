@@ -2,7 +2,7 @@ import sqlite3
 import os
 class DataBase:
     def __init__(self) -> None:
-        self.path = os.getcwd() + r'\documents\database.db'
+        self.path = os.getcwd() + r'/documents/database.db'
 
     def add_user(self, tele_user_id):
         connection = sqlite3.connect(self.path)

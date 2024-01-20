@@ -5,10 +5,10 @@ import os
 
 class Replacement:
     def __init__(self) -> None:
-        self.document = Document(os.getcwd() + r"\documents\zameni.docx")
+        self.document = Document(os.getcwd() + r"/documents/zameni.docx")
 
     def update_replacement(self):
-        self.document = Document(os.getcwd() + r"\documents\zameni.docx")
+        self.document = Document(os.getcwd() + r"/documents/zameni.docx")
 
     def zameni_group(self, user_id):
 
