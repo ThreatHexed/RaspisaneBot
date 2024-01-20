@@ -1,0 +1,12 @@
+*.venv/
+.vscode/*
+*.pyc
+.ruff_cache/*
+*__pycache__
+*venv/`
+venv
+venv/
+*venv/*
+sosi.py
+
+*test
