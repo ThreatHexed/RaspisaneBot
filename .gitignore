@@ -3,8 +3,8 @@
 *.pyc
 .ruff_cache/*
 *__pycache__
-
+*venv
 
 sosi.py
-database.db
+
 *test
