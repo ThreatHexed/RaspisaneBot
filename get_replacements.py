@@ -3,7 +3,8 @@ from docx import Document
 from database import DataBase
 import os
 
-class Replacement:
+
+class Replacement():
     def __init__(self) -> None:
         self.document = Document(os.getcwd() + r"/documents/zameni.docx")
 
@@ -11,6 +12,8 @@ class Replacement:
         self.document = Document(os.getcwd() + r"/documents/zameni.docx")
 
     def zameni_group(self, user_id):
+        
+        
 
         group = DataBase().get_group(user_id)
         aboba = []

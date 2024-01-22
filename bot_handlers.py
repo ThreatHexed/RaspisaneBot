@@ -2,23 +2,28 @@
 from aiogram import F, Router, types
 from aiogram.filters import Command
 from aiogram.types import Message
+import threading
+
 
 from bot_kb import groups
 from datetime import datetime
 import bot_kb
 import bot_text
-import get_replacements
 from database import DataBase
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 router = Router()
 
-
 from get_shelude import Shelude
 from get_replacements import Replacement
+from download_docs import Docs
+
+down = Docs()
 shelude = Shelude()
 replacements = Replacement()
+
+
 
 class UserState(StatesGroup):
     weekday = State()
@@ -41,7 +46,7 @@ async def start_handler(msg: Message):
 async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext):
     await state.set_state(UserState.weekday)
     tele_user_id = callback.from_user.id
-
+    
     if callback.data == 'nextday':
         daynumber = await state.get_data()
         await state.update_data(weekday = daynumber['weekday'] + 1)
@@ -57,7 +62,7 @@ async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext)
         daynumber = await state.get_data()
 
     daynumber = int(daynumber['weekday'])
-    
+    print(daynumber)
     if daynumber < 1 or daynumber > 6:
         await state.update_data(weekday = datetime.isoweekday(datetime.now()))
 
