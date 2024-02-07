@@ -15,7 +15,7 @@ menu_admin = [
 ]
 
 menu = InlineKeyboardMarkup(inline_keyboard=menu)
-
+menu_admin = InlineKeyboardMarkup(inline_keyboard=menu_admin)
 
 back = [[InlineKeyboardButton(text="Назад🏠", callback_data='home')]]
 back = InlineKeyboardMarkup(inline_keyboard=back)
