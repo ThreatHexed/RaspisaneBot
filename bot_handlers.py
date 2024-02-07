@@ -39,9 +39,9 @@ async def start_handler(msg: Message):
     p = DataBase()
     p.add_user(msg.from_user.id)
     # if msg.from_user.id != 6568538052:
-    #     await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu)
+    await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu)
     # else:
-    await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu_admin)
+    # await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu_admin)
 
 
 @router.callback_query(F.data == 'nextday')
@@ -81,14 +81,14 @@ async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext)
 
 
 
-@router.callback_query.message.chat(F.data == 'send_massege')
-async def send_notification_all_users(message: types.Message, state: FSMContext):
-    message = bot.send_message(message.chat.id, "Введите текст уведомления")
-    bot.register_next_step_handler(message, send)
+# @router.callback_query.message.chat(F.data == 'send_massege')
+# async def send_notification_all_users(message: types.Message, state: FSMContext):
+#     message = bot.send_message(message.chat.id, "Введите текст уведомления")
+#     bot.register_next_step_handler(message, send)
 
-async def send(message: types.Message):
-    for user in DataBase().get_users():
-        bot.send_message(user, message) 
+# async def send(message: types.Message):
+#     for user in DataBase().get_users():
+#         bot.send_message(user, message) 
 
 
 @router.callback_query(F.data == 'get_zameni')
