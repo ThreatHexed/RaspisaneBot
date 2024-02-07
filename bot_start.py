@@ -8,10 +8,10 @@ import bot_config
 from bot_handlers import router, down
 
 class BOT():
-    async def check(self):
-        while True:
-            down.start()
-            await asyncio.sleep(600)
+    # async def check(self):
+    #     while True:
+    #         down.start()
+    #         await asyncio.sleep(600)
 
     async def main(self):
         dp = Dispatcher(storage=MemoryStorage())
