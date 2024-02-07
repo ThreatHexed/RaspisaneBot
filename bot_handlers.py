@@ -13,17 +13,18 @@ from database import DataBase
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
+from aiogram import Bot
 router = Router()
 
 from get_shelude import Shelude
 from get_replacements import Replacement
 from download_docs import Docs
-# from bot_start import bot
+import bot_config
 down = Docs()
 shelude = Shelude()
 replacements = Replacement()
 
-
+bot = Bot(token=bot_config.TOKEN)
 
 
 class UserState(StatesGroup):
