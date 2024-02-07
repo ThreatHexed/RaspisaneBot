@@ -4,9 +4,16 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 menu = [
     [InlineKeyboardButton(text="Расписание", callback_data='get_timetable')],
     [InlineKeyboardButton(text="Замены", callback_data='get_zameni')],
-    # [InlineKeyboardButton(text="Препод", callback_data="get_timetable_teacher")],
     [InlineKeyboardButton(text="Указать группу", callback_data='choose_group')]
 ]
+
+menu_admin = [  
+    [InlineKeyboardButton(text="Отправить уведомление", callback_data="send_massege")],
+    [InlineKeyboardButton(text="Расписание", callback_data='get_timetable')],
+    [InlineKeyboardButton(text="Замены", callback_data='get_zameni')],
+    [InlineKeyboardButton(text="Указать группу", callback_data='choose_group')]
+]
+
 menu = InlineKeyboardMarkup(inline_keyboard=menu)
 
 

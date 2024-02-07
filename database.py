@@ -27,3 +27,13 @@ class DataBase:
         connection.commit()
         connection.close()
         return group_name
+    
+    def get_all_users(self):
+        connection = sqlite3.connect(self.path)
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM Users')
+        users = cursor.fetchall()
+        connection.commit()
+        connection.close()
+        return users
+        

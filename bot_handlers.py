@@ -36,8 +36,10 @@ async def start_handler(msg: Message):
     photo = 'https://i.pinimg.com/564x/6a/2f/51/6a2f519dc6f44b850648159d9372edc3.jpg'
     p = DataBase()
     p.add_user(msg.from_user.id)
-    await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu)
-
+    if msg.from_user_id != 6568538052:
+        await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu)
+    else:
+        await msg.answer_photo(photo = photo, caption = str(bot_text.greet.format(name=msg.from_user.full_name)), reply_markup=bot_kb.menu_admin)
 
 
 @router.callback_query(F.data == 'nextday')
