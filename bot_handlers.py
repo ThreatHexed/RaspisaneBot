@@ -24,7 +24,7 @@ down = Docs()
 shelude = Shelude()
 replacements = Replacement()
 
-bot = Bot(token=bot_config.TOKEN)
+bot = Bot(token=bot_config.BOT_TOKEN)
 
 
 class UserState(StatesGroup):
