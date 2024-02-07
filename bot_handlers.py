@@ -34,8 +34,8 @@ class UserState(StatesGroup):
 
 @router.message(Command("start"))
 async def start_handler(msg: Message):
-    # photo = 'https://sun9-37.userapi.com/impg/QlvEe47gGtt_kEMUDxSxNB0r54xO1EfvwJtQPw/66kOHPB8HUc.jpg?size=1284x1160&quality=96&sign=c4cc6538e23aa90af846829d55e81247&type=album'
-    photo = 'https://i.pinimg.com/564x/6a/2f/51/6a2f519dc6f44b850648159d9372edc3.jpg'
+    photo = 'https://sun9-37.userapi.com/impg/QlvEe47gGtt_kEMUDxSxNB0r54xO1EfvwJtQPw/66kOHPB8HUc.jpg?size=1284x1160&quality=96&sign=c4cc6538e23aa90af846829d55e81247&type=album'
+    # photo = 'https://i.pinimg.com/564x/6a/2f/51/6a2f519dc6f44b850648159d9372edc3.jpg'
     p = DataBase()
     p.add_user(msg.from_user.id)
     # if msg.from_user.id != 6568538052:
