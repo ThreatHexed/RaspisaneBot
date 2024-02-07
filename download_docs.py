@@ -95,26 +95,28 @@ class Docs(Shelude, Replacement):
             # print(f'[{get_time()}][Status] DOC hash sums are same, nothing to do')
 
     # Скачиваем файлы
-    def download_xls(self, response):
-        with open(self.path + r'/documents/raspisanie.xls', 'wb') as file:
-            file.write(response.content)
-        print(f'[{get_time()}][Status] new XLS file dowloaded')
-        x2x = XLS2XLSX(self.path + r'/documents/raspisanie.xls')
-        x2x.to_xlsx(self.path + r'/documents/raspisanie.xlsx')
-        print(f'[{get_time()}][Status] XLS file converted to XLSX')
+        def download_xls(self, response):
+            with open(self.path + r'/documents/raspisanie.xls', 'wb') as file:
+                file.write(response.content)
+            print(f'[{get_time()}][Status] new XLS file dowloaded')
+            x2x = XLS2XLSX(self.path + r'/documents/raspisanie.xls')
+            x2x.to_xlsx(self.path + r'/documents/raspisanie.xlsx')
+            print(f'[{get_time()}][Status] XLS file converted to XLSX')
 
-        # self.update_hash_xls()
-    
-    def download_doc(self, response):
-        with open(self.path + r'/documents/zameni.doc', 'wb') as file:
-            file.write(response.content)
-        print(f'[{get_time()}][Status] new DOC file dowloaded')
-        doc = aw.Document(self.path + r'/documents/zameni.doc')
-        doc.save(self.path + r'/documents/zameni.docx')
-        print(f'[{get_time()}][Status] DOC file converted to DOCX')
-
-        # self.update_hash_doc()
+            # self.update_hash_xls()
         
+        def download_doc(self, response):
+            with open(self.path + r'/documents/zameni.doc', 'wb') as file:
+                file.write(response.content)
+            print(f'[{get_time()}][Status] new DOC file dowloaded')
+            doc = aw.Document(self.path + r'/documents/zameni.doc')
+            doc.save(self.path + r'/documents/zameni.docx')
+            print(f'[{get_time()}][Status] DOC file converted to DOCX')
+
+            # self.update_hash_doc()
+        if True:
+            download_doc(response_doc)
+            download_xls(response_xls)
     # def start(self):
     #     self.check_hash_xls()
     #     self.check_hash_doc()
