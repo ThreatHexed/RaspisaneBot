@@ -8,10 +8,10 @@ import bot_config
 from bot_handlers import router, down
 
 class BOT():
-    # async def check(self):
-    #     while True:
-    #         down.start()
-    #         await asyncio.sleep(600)
+    async def check(self):
+        while True:
+            down.start()
+            await asyncio.sleep(600)
 
     async def main(self):
         dp = Dispatcher(storage=MemoryStorage())
@@ -19,7 +19,7 @@ class BOT():
         dp.include_router(router)
         loop = asyncio.get_running_loop()
 
-        # chk = loop.create_task(self.check())
+        chk = loop.create_task(self.check())
 
         await bot.delete_webhook(drop_pending_updates=True)
         await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
