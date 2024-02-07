@@ -18,10 +18,11 @@ router = Router()
 from get_shelude import Shelude
 from get_replacements import Replacement
 from download_docs import Docs
-
+from bot_start import bot
 down = Docs()
 shelude = Shelude()
 replacements = Replacement()
+
 
 
 
@@ -78,6 +79,11 @@ async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext)
         await callback.message.edit_caption(caption = shelude.get_timetable(daynumber, tele_user_id), reply_markup=bot_kb.timetable.as_markup())
 
 
+
+@router.callback_query(F.data == 'Отправить уведомление')
+async def send_notification_all_users(message: types.Message, state: FSMContext):
+    for user in DataBase().get_users():
+        await bot.send_message(chat_id=user, text=message.text, disable_notification=True)
 
 
 @router.callback_query(F.data == 'get_zameni')
