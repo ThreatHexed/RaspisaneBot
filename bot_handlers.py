@@ -83,6 +83,7 @@ async def change_timetable_day(callback: types.CallbackQuery, state: FSMContext)
 
 @router.callback_query(F.data == 'Отправить уведомление')
 async def send_notification_all_users(message: types.Message, state: FSMContext):
+    await message.answer(reply_markup=bot_kb.menu)
     for user in DataBase().get_users():
         await bot.send_message(chat_id=user, text=message.text, disable_notification=True)
 
