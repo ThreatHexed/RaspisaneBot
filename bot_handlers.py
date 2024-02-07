@@ -18,7 +18,7 @@ router = Router()
 from get_shelude import Shelude
 from get_replacements import Replacement
 from download_docs import Docs
-from bot_start import bot
+# from bot_start import bot
 down = Docs()
 shelude = Shelude()
 replacements = Replacement()
