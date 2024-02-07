@@ -3,8 +3,8 @@ import aspose.words as aw
 from xls2xlsx import XLS2XLSX
 import os
 import hashlib
-from get_shelude import Shelude
-from get_replacements import Replacement
+from get_shelude_new import Shelude
+from get_replacements_new import Replacement
 import asyncio
 from datetime import datetime
 import pytz

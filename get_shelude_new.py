@@ -2,8 +2,14 @@ from openpyxl import load_workbook
 import os
 from database import DataBase
 
+class Shelude:
+    def __init__(self) -> None:
+        self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
 
-def get_timetable(self, weekday, user_id):
+    def update_shelude(self):
+        self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
+
+    def get_timetable(self, weekday, user_id):
         group = DataBase().get_group(user_id)
 
         timetable = ''

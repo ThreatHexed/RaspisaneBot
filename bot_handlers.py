@@ -15,8 +15,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 router = Router()
 
-from get_shelude import Shelude
-from get_replacements import Replacement
+from get_shelude_new import Shelude
+from get_replacements_new import Replacement
 from download_docs import Docs
 
 down = Docs()
