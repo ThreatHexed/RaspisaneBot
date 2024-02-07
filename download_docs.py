@@ -115,8 +115,8 @@ class Docs(Shelude, Replacement):
 
             # self.update_hash_doc()
         if True:
-            download_doc(response_doc)
-            download_xls(response_xls)
+            download_doc(self, response_doc)
+            download_xls(self, response_xls)
     # def start(self):
     #     self.check_hash_xls()
     #     self.check_hash_doc()
