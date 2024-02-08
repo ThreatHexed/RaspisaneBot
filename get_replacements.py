@@ -2,14 +2,18 @@ import re
 from docx import Document
 from database import DataBase
 import os
-
+import asyncio
 
 class Replacement():
     def __init__(self) -> None:
         self.document = Document(os.getcwd() + r"/documents/zameni.docx")
+        self.repl_event = asyncio.Event()
 
-    def update_replacement(self):
-        self.document = Document(os.getcwd() + r"/documents/zameni.docx")
+    async def update_replacement(self):
+        while True:
+            self.repl_event.wait()
+            self.document = Document(os.getcwd() + r"/documents/zameni.docx")
+            self.repl_event.clear()
 
     def zameni_group(self, user_id):
         

@@ -1,14 +1,18 @@
 from openpyxl import load_workbook
 import os
 from database import DataBase
-
+import asyncio
 class Shelude:
     def __init__(self) -> None:
         self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
-
-    def update_shelude(self):
-        self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
-
+        self.shel_event = asyncio.Event()
+        
+    async def update_shelude(self):
+        while True:
+            self.shel_event.wait()
+            self.worksheet = load_workbook(os.getcwd() + r'/documents/raspisanie.xlsx')['Лист1']
+            self.shel_event.clear()
+        
     def get_timetable(self, weekday, user_id):
         group = DataBase().get_group(user_id)
 

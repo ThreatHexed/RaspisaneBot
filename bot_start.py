@@ -19,7 +19,7 @@ class BOT():
         dp.include_router(router)
         loop = asyncio.get_running_loop()
 
-        chk = loop.create_task(self.check())
+        loop.create_task(self.check())
 
         await bot.delete_webhook(drop_pending_updates=True)
         await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
